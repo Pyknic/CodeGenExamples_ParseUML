@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ExampleUML">
+  <ClassDiagramComponents>
+    <Class name="Hare" package="" visibility="public" xPosition="349.0" yPosition="223.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="age" type="int" visibility="private"/>
+        <Field name="color" type="Color" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setAge" returnType="void" visibility="public">
+          <Argument type="int" name="age"/>
+        </Method>
+        <Method name="setColor" returnType="void" visibility="public">
+          <Argument type="Color" name="color"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Enum name="Color" package="" visibility="public" xPosition="87.0" yPosition="247.0">
+      <Literals>
+        <Literal name="BROWN"/>
+        <Literal name="GRAY"/>
+        <Literal name="BLACK"/>
+        <Literal name="WHITE"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="color" source="Hare" target="Color" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
