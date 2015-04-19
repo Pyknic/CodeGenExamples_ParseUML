@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.speedment.codgen.uml;
+package com.speedment.codgen.example.uml;
 
 import com.speedment.codegen.base.DefaultTransformFactory;
 import com.speedment.codegen.lang.models.Class;
@@ -25,14 +25,14 @@ import com.speedment.codegen.lang.models.Field;
 import com.speedment.codegen.lang.models.File;
 import com.speedment.codegen.lang.models.Interface;
 import com.speedment.codegen.lang.models.Method;
-import com.speedment.codgen.uml.transforms.ElementToClassTransform;
-import com.speedment.codgen.uml.transforms.ElementToConstructorTransform;
-import com.speedment.codgen.uml.transforms.ElementToEnumConstantTransform;
-import com.speedment.codgen.uml.transforms.ElementToEnumTransform;
-import com.speedment.codgen.uml.transforms.ElementToFieldTransform;
-import com.speedment.codgen.uml.transforms.ElementToFileTransform;
-import com.speedment.codgen.uml.transforms.ElementToInterfaceTransform;
-import com.speedment.codgen.uml.transforms.ElementToMethodTransform;
+import com.speedment.codegen.example.uml.transforms.ElementToClassTransform;
+import com.speedment.codegen.example.uml.transforms.ElementToConstructorTransform;
+import com.speedment.codegen.example.uml.transforms.ElementToEnumConstantTransform;
+import com.speedment.codegen.example.uml.transforms.ElementToEnumTransform;
+import com.speedment.codegen.example.uml.transforms.ElementToFieldTransform;
+import com.speedment.codegen.example.uml.transforms.ElementToFileTransform;
+import com.speedment.codegen.example.uml.transforms.ElementToInterfaceTransform;
+import com.speedment.codegen.example.uml.transforms.ElementToMethodTransform;
 import org.jdom2.Element;
 
 /**

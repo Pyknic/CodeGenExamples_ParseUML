@@ -14,12 +14,12 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.speedment.codgen.uml.transforms;
+package com.speedment.codegen.example.uml.transforms;
 
 import com.speedment.codegen.base.Generator;
 import com.speedment.codegen.base.Transform;
 import com.speedment.codegen.lang.models.EnumConstant;
-import com.speedment.codgen.uml.TransformDelegator;
+import com.speedment.codgen.example.uml.TransformDelegator;
 import java.util.Optional;
 import org.jdom2.Element;
 

@@ -14,13 +14,15 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.speedment.codgen.uml.transforms;
+package com.speedment.codegen.example.uml.transforms;
 
 import com.speedment.codegen.base.Generator;
 import com.speedment.codegen.base.Transform;
 import com.speedment.codegen.lang.models.Field;
+import com.speedment.codegen.lang.models.Method;
 import com.speedment.codegen.lang.models.Type;
-import com.speedment.codgen.uml.TransformDelegator;
+import static com.speedment.codegen.lang.models.constants.DefaultType.VOID;
+import com.speedment.codgen.example.uml.TransformDelegator;
 import java.util.Optional;
 import org.jdom2.Element;
 
@@ -28,19 +30,18 @@ import org.jdom2.Element;
  *
  * @author Emil Forslund
  */
-public class ElementToFieldTransform implements Transform<Element, Field>, TransformDelegator {
+public class ElementToMethodTransform implements Transform<Element, Method>, TransformDelegator {
 
 	@Override
-	public Optional<Field> transform(Generator gen, Element model) {
-		if ("Argument".equals(model.getName())
-		||  "Field".equals(model.getName())) {
+	public Optional<Method> transform(Generator gen, Element model) {
+		if ("Method".equals(model.getName())) {
 			
-			final Field result = Field.of(
-				model.getAttributeValue("name"), 
-				Type.of(model.getAttributeValue("type"))
-			);
+			final Method result = Method.of(model.getAttributeValue("name"), VOID);
 			
 			declareVisibility(result, model);
+			children(gen, model, Field.class).forEachOrdered(result::add);
+			
+			result.set(Type.of(model.getAttributeValue("returnType")));
 			
 			return Optional.of(result);
 		} 

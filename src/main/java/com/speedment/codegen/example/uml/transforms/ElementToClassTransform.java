@@ -14,14 +14,15 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.speedment.codgen.uml.transforms;
+package com.speedment.codegen.example.uml.transforms;
 
 import com.speedment.codegen.base.Generator;
 import com.speedment.codegen.base.Transform;
+import com.speedment.codegen.lang.models.Class;
+import com.speedment.codegen.lang.models.Constructor;
 import com.speedment.codegen.lang.models.Field;
-import com.speedment.codegen.lang.models.Interface;
 import com.speedment.codegen.lang.models.Method;
-import com.speedment.codgen.uml.TransformDelegator;
+import com.speedment.codgen.example.uml.TransformDelegator;
 import java.util.Optional;
 import org.jdom2.Element;
 
@@ -29,15 +30,17 @@ import org.jdom2.Element;
  *
  * @author Emil Forslund
  */
-public class ElementToInterfaceTransform implements Transform<Element, Interface>, TransformDelegator {
+public class ElementToClassTransform implements Transform<Element, Class>, TransformDelegator {
 
 	@Override
-	public Optional<Interface> transform(Generator gen, Element model) {
-		if ("Interface".equals(model.getName())) {
+	public Optional<Class> transform(Generator gen, Element model) {
+		if ("Class".equals(model.getName())) {
 			
-			final Interface result = Interface.of(model.getAttributeValue("name"));
+			final Class result = Class.of(model.getAttributeValue("name"));
 			
 			declareVisibility(result, model);
+			
+			children(gen, model, "Constructors", Constructor.class).forEachOrdered(result::add);
 			children(gen, model, "Fields", Field.class).forEachOrdered(result::add);
 			children(gen, model, "Methods", Method.class).forEachOrdered(result::add);
 			
