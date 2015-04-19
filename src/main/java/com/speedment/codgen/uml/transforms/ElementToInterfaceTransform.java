@@ -18,14 +18,11 @@ package com.speedment.codgen.uml.transforms;
 
 import com.speedment.codegen.base.Generator;
 import com.speedment.codegen.base.Transform;
-import com.speedment.codegen.lang.models.ClassOrInterface;
-import com.speedment.codegen.lang.models.Constructor;
 import com.speedment.codegen.lang.models.Field;
 import com.speedment.codegen.lang.models.Interface;
 import com.speedment.codegen.lang.models.Method;
 import com.speedment.codgen.uml.TransformDelegator;
 import java.util.Optional;
-import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 /**
