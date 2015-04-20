@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- *
+ * Singleton class.
+ * 
  * @author Emil Forslund
  */
 public enum TypeStore {
