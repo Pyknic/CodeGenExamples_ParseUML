@@ -10,13 +10,13 @@
       </Fields>
       <Constructors/>
       <Methods>
-        <Method name="setName" returnType="void" visibility="public">
+        <Method name="setName" returnType="String" visibility="public">
           <Argument type="String" name="name"/>
         </Method>
-        <Method name="setAge" returnType="void" visibility="public">
+        <Method name="setAge" returnType="int" visibility="public">
           <Argument type="int" name="age"/>
         </Method>
-        <Method name="setColor" returnType="void" visibility="public">
+        <Method name="setColor" returnType="Color" visibility="public">
           <Argument type="Color" name="color"/>
         </Method>
       </Methods>
