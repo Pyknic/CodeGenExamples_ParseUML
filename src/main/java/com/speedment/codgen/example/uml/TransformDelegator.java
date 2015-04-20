@@ -14,12 +14,13 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.speedment.codgen.uml;
+package com.speedment.codgen.example.uml;
 
 import com.speedment.codegen.base.Generator;
 import com.speedment.codegen.base.Meta;
 import com.speedment.codegen.lang.models.Type;
 import static com.speedment.codegen.lang.models.modifiers.Keyword.*;
+import com.speedment.codgen.uml.TypeStore;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Stream;

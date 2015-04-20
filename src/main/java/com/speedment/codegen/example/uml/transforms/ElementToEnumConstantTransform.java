@@ -14,13 +14,12 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.speedment.codgen.uml.transforms;
+package com.speedment.codegen.example.uml.transforms;
 
 import com.speedment.codegen.base.Generator;
 import com.speedment.codegen.base.Transform;
-import com.speedment.codegen.lang.models.Constructor;
-import com.speedment.codegen.lang.models.Field;
-import com.speedment.codgen.uml.TransformDelegator;
+import com.speedment.codegen.lang.models.EnumConstant;
+import com.speedment.codgen.example.uml.TransformDelegator;
 import java.util.Optional;
 import org.jdom2.Element;
 
@@ -28,17 +27,12 @@ import org.jdom2.Element;
  *
  * @author Emil Forslund
  */
-public class ElementToConstructorTransform implements Transform<Element, Constructor>, TransformDelegator {
+public class ElementToEnumConstantTransform implements Transform<Element, EnumConstant>, TransformDelegator {
 
 	@Override
-	public Optional<Constructor> transform(Generator gen, Element model) {
-		if ("Constructor".equals(model.getName())) {
-			final Constructor result = Constructor.of();
-			
-			declareVisibility(result, model);
-			children(gen, model, Field.class).forEachOrdered(result::add);
-			
-			return Optional.of(result);
+	public Optional<EnumConstant> transform(Generator gen, Element model) {
+		if ("Literal".equals(model.getName())) {
+			return Optional.of(EnumConstant.of(model.getAttributeValue("name")));
 		} 
 		
 		return Optional.empty();
