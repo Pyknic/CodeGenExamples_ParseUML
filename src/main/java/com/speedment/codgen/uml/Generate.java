@@ -21,6 +21,7 @@ import com.speedment.codegen.base.Meta;
 import com.speedment.codegen.java.JavaGenerator;
 import com.speedment.codegen.java.JavaTransformFactory;
 import com.speedment.codegen.lang.models.File;
+import com.speedment.codegen.lang.models.Type;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -44,13 +45,15 @@ public class Generate {
 			new JavaTransformFactory(),
 			new UMLTransformFactory()
 		);
-		
+
 		final URL umlPath = Generate.class.getResource(PATH + "ExampleUML.cdg");
 		
 		try {
 			final SAXBuilder jdomBuilder = new SAXBuilder();
 			final Document doc = jdomBuilder.build(umlPath);
 			final Element classDiagram = doc.getRootElement();
+			
+			//gen.metaOn(classDiagram.getChild("ClassDiagramRelations").getChildren()
 			
 			System.out.println(
 			gen.metaOn(classDiagram.getChild("ClassDiagramComponents").getChildren(), File.class)

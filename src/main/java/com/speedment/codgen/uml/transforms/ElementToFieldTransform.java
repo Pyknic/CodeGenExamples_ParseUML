@@ -21,6 +21,7 @@ import com.speedment.codegen.base.Transform;
 import com.speedment.codegen.lang.models.Field;
 import com.speedment.codegen.lang.models.Type;
 import com.speedment.codgen.uml.TransformDelegator;
+import com.speedment.codgen.uml.TypeStore;
 import java.util.Optional;
 import org.jdom2.Element;
 
@@ -37,7 +38,7 @@ public class ElementToFieldTransform implements Transform<Element, Field>, Trans
 			
 			final Field result = Field.of(
 				model.getAttributeValue("name"), 
-				Type.of(model.getAttributeValue("type"))
+				TypeStore.INST.get(model.getAttributeValue("type"))
 			);
 			
 			declareVisibility(result, model);

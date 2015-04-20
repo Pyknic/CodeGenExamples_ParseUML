@@ -19,13 +19,12 @@ package com.speedment.codgen.uml.transforms;
 import com.speedment.codegen.base.Generator;
 import com.speedment.codegen.base.Transform;
 import com.speedment.codegen.lang.models.Class;
-import com.speedment.codegen.lang.models.ClassOrInterface;
 import com.speedment.codegen.lang.models.Constructor;
 import com.speedment.codegen.lang.models.Field;
 import com.speedment.codegen.lang.models.Method;
 import com.speedment.codgen.uml.TransformDelegator;
+import com.speedment.codgen.uml.TypeStore;
 import java.util.Optional;
-import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 /**
@@ -39,6 +38,7 @@ public class ElementToClassTransform implements Transform<Element, Class>, Trans
 		if ("Class".equals(model.getName())) {
 			
 			final Class result = Class.of(model.getAttributeValue("name"));
+			updateType(model);
 			
 			declareVisibility(result, model);
 			
@@ -51,4 +51,5 @@ public class ElementToClassTransform implements Transform<Element, Class>, Trans
 		
 		return Optional.empty();
 	}
+	
 }

@@ -23,6 +23,7 @@ import com.speedment.codegen.lang.models.Method;
 import com.speedment.codegen.lang.models.Type;
 import static com.speedment.codegen.lang.models.constants.DefaultType.VOID;
 import com.speedment.codgen.uml.TransformDelegator;
+import com.speedment.codgen.uml.TypeStore;
 import java.util.Optional;
 import org.jdom2.Element;
 
@@ -41,7 +42,7 @@ public class ElementToMethodTransform implements Transform<Element, Method>, Tra
 			declareVisibility(result, model);
 			children(gen, model, Field.class).forEachOrdered(result::add);
 			
-			result.set(Type.of(model.getAttributeValue("returnType")));
+			result.set(TypeStore.INST.get(model.getAttributeValue("returnType")));
 			
 			return Optional.of(result);
 		} 

@@ -18,7 +18,6 @@ package com.speedment.codgen.uml.transforms;
 
 import com.speedment.codegen.base.Generator;
 import com.speedment.codegen.base.Transform;
-import com.speedment.codegen.lang.models.ClassOrInterface;
 import com.speedment.codegen.lang.models.Constructor;
 import com.speedment.codegen.lang.models.Enum;
 import com.speedment.codegen.lang.models.EnumConstant;
@@ -26,8 +25,6 @@ import com.speedment.codegen.lang.models.Field;
 import com.speedment.codegen.lang.models.Method;
 import com.speedment.codgen.uml.TransformDelegator;
 import java.util.Optional;
-import java.util.stream.Stream;
-import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 /**
@@ -41,7 +38,8 @@ public class ElementToEnumTransform implements Transform<Element, Enum>, Transfo
 		if ("Enum".equals(model.getName())) {
 			
 			final Enum result = Enum.of(model.getAttributeValue("name"));
-
+			updateType(model);
+			
 			declareVisibility(result, model);
 			children(gen, model, "Literals", EnumConstant.class).forEachOrdered(result::add);
 			children(gen, model, "Constructors", Constructor.class).forEachOrdered(result::add);

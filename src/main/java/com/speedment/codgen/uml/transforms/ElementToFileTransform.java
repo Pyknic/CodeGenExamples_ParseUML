@@ -23,7 +23,9 @@ import com.speedment.codegen.lang.models.File;
 import com.speedment.codegen.lang.models.Class;
 import com.speedment.codegen.lang.models.Enum;
 import com.speedment.codegen.lang.models.Interface;
+import com.speedment.codegen.lang.models.Type;
 import com.speedment.codgen.uml.TransformDelegator;
+import com.speedment.codgen.uml.TypeStore;
 import java.util.Optional;
 import org.jdom2.Element;
 
@@ -39,10 +41,12 @@ public class ElementToFileTransform implements Transform<Element, File>, Transfo
 		||  "Interface".equals(model.getName())
 		||  "Enum".equals(model.getName())) {
 			
-			final File result = File.of(
-				model.getAttributeValue("package") + 
-				model.getAttributeValue("name")
-			);
+			final File result = File.of("");
+			
+			TypeStore.INST.get(model.getAttributeValue("name"))
+				.addListener((ob, o, n) -> result.setName(filename(n)));
+			
+			updateType(model);
 			
 			declareVisibility(result, model);
 			
@@ -54,5 +58,9 @@ public class ElementToFileTransform implements Transform<Element, File>, Transfo
 		} 
 		
 		return Optional.empty();
+	}
+	
+	private static String filename(Type type) {
+		return type.getName().replace(".", "/") + ".java";
 	}
 }

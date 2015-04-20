@@ -18,6 +18,7 @@ package com.speedment.codgen.uml;
 
 import com.speedment.codegen.base.Generator;
 import com.speedment.codegen.base.Meta;
+import com.speedment.codegen.lang.models.Type;
 import static com.speedment.codegen.lang.models.modifiers.Keyword.*;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -51,6 +52,12 @@ public interface TransformDelegator {
 			ifType(visible, out, private_.class, private_::private_);
 			ifType(visible, out, protected_.class, protected_::protected_);
 		}
+	}
+	
+	default Type updateType(Element element) {
+		final String name = element.getAttributeValue("name");
+		final String pack = element.getAttributeValue("package");
+		return TypeStore.INST.get(name).setName(pack + name);
 	}
 	
 	static <M> void ifType(Attribute a, Object obj, Class<M> type, Consumer<M> doer) {
